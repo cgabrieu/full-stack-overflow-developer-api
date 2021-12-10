@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/cgabrieu/full-stack-overflow-developer-api/issues"
   },
-  "homepage": "https://github.com/cgabrieu/full-stack-overflow-developer-api#readme"
+  "homepage": "https://github.com/cgabrieu/full-stack-overflow-developer-api#readme",
+  "devDependencies": {
+    "git-commit-msg-linter": "^3.2.8"
+  }
 }
