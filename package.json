@@ -1,0 +1,23 @@
+{
+  "name": "full-stack-overflow-developer-api",
+  "version": "0.0.1",
+  "description": "An api to track Full Stack Overflow Developer Q&A",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgabrieu/full-stack-overflow-developer-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "typescript"
+  ],
+  "author": "cgabrieu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cgabrieu/full-stack-overflow-developer-api/issues"
+  },
+  "homepage": "https://github.com/cgabrieu/full-stack-overflow-developer-api#readme"
+}
