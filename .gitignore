@@ -1,8 +1,8 @@
 node_modules
+dist
+/*.js
 
 package-lock.json
-
-dist
 
 .env
 .env.dev
