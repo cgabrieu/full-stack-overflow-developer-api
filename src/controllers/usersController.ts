@@ -1,3 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 
-async function postUser(req: Request, res: Response, next: N);
+export async function postUser(req: Request, res: Response, next: NextFunction) {
+    
+}
