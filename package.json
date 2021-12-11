@@ -4,8 +4,10 @@
   "description": "An api to track Full Stack Overflow Developer Q&A",
   "main": "index.js",
   "scripts": {
-    "start:dev": "NODE_ENV=dev nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\""
+    "start:dev": "NODE_ENV=dev nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\"",
+    "prepare": "husky install"
   },
+  "pre-commit": "lint-staged",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cgabrieu/full-stack-overflow-developer-api.git"
@@ -39,6 +41,8 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "git-commit-msg-linter": "^3.2.8",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
     "ts-node": "^10.4.0",

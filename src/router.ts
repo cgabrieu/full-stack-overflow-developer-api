@@ -1,11 +1,8 @@
 import { Request, Response, Router } from 'express';
+import usersRouter from './routers/usersRouter';
 
 const router = Router();
 
-router.get('/check', (req: Request, res: Response) => {
-  res.send({
-    message: 'Running.',
-  });
-});
+router.use('/check', usersRouter);
 
 export default router;
