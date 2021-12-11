@@ -4,7 +4,9 @@
         "node": true
     },
     "extends": [
-        "airbnb-base"
+        "airbnb-base",
+        "prettier",
+        "plugin:import/typescript"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -15,5 +17,7 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "import/extensions": "off",
+        "import/prefer-default-export": "off"
     }
 }
