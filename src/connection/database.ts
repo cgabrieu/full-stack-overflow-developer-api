@@ -17,6 +17,6 @@ if (process.env.NODE_ENV === 'prod') {
   };
 }
 
-const connection = new Pool(connectionData);
+const connection: Pool = new Pool(connectionData);
 
 export default connection;
