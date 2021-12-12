@@ -16,7 +16,6 @@ CREATE TABLE "users" (
 	"id" serial NOT NULL,
 	"name" varchar(255) NOT NULL,
 	"class" class NOT NULL,
-	"token" varchar(255) NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
