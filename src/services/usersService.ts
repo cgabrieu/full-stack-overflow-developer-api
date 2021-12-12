@@ -10,4 +10,5 @@ export async function create(createUserBody: User) {
   if (user) throw new Conflict('User already exists');
 
   const result = usersRepository.create(name, classname);
+  console.log(result);
 }
