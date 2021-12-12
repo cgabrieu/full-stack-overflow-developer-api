@@ -11,11 +11,12 @@ export async function findName(name: string): Promise<QueryResult<User>> {
   return result.rows[0];
 }
 
-export async function create(name: string, classname: string): Promise<QueryResult> {
+export async function create(name: string, classname: string): Promise<QueryResult<any>> {
   const result = await connection.query(
-    'INSERT INTO users (name, class) VALUES ($1, $2);',
+    'INSERT INTO users (name, class) VALUES ($1, $2) RETURNING id;',
     [name, classname],
   );
-  return result;
+
+  return result.rows[0].id;
 }
 
