@@ -6,7 +6,7 @@ import httpStatusCode from '../enums/httpStatusCode';
 import * as usersService from '../services/usersService';
 import Conflict from '../errors/Conflict';
 
-export async function createUser(req: Request, res: Response, next: NextFunction) {
+export async function createUser(req: Request, res: Response, next: NextFunction): Promise<void | Response<any, Record<string, any>>> {
   try {
     const createUserBody: User = req.body;
 

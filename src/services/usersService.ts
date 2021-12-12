@@ -16,5 +16,7 @@ export async function create(createUserBody: User): Promise<string> {
     const token = jwt.sign({ userId }, process.env.JWT_SECRET);
     return token;
   }
+
   throw new Invalid('Invalid data, unable to create user');
 }
+
