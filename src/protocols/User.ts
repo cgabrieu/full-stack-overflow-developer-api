@@ -3,8 +3,3 @@ export interface User {
     name: string,
     class: string,
 }
-
-export interface CreateUserBody {
-    name: string,
-    class: string,
-}

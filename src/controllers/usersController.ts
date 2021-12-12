@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { CreateUserBody, User } from '../protocols/User';
+import { User } from '../protocols/User';
 import { createUserSchema } from '../schemas/usersSchemas';
 import Invalid from '../errors/Invalid';
 import httpStatusCode from '../enums/httpStatusCode';
@@ -8,7 +8,7 @@ import Conflict from '../errors/Conflict';
 
 export async function createUser(req: Request, res: Response, next: NextFunction) {
   try {
-    const createUserBody: CreateUserBody = req.body;
+    const createUserBody: User = req.body;
 
     const { error: invalidBody } = createUserSchema.validate(createUserBody);
     if (invalidBody) {
