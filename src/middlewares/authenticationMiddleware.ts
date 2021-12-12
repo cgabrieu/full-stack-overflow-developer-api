@@ -1,7 +1,7 @@
 import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import httpStatusCode from '../enums/httpStatusCode';
-import RequestAuthentication from '../protocols/IRequestAuthentication';
+import RequestAuthentication from '../protocols/RequestAuthentication';
 
 export default async function authenticationMiddleware(req: RequestAuthentication, res: Response, next: NextFunction) {
   const authorization = req.header('Authorization');
