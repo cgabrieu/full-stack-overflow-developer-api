@@ -1,4 +1,4 @@
-CREATE TYPE class AS ENUM ('T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10');
+CREATE DOMAIN class AS varchar(3) CHECK (VALUE ~* '[T]{1}\d{1,2}');
 
 CREATE TABLE "questions" (
 	"id" serial NOT NULL,
