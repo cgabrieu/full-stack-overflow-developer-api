@@ -46,45 +46,49 @@ See sample requests and responses
 #### Make a POST /users:
 ```json
 {
-	"name": "Marcio",
-	"class": "T3" 
+  "name": "Marcio",
+  "class": "T3" 
 }
 ```
-#### It will return a json web token:
+It will return a json web token:
 ```json
 {
-	"token": "xxxxx.yyyyy.zzzzz"
+  "token": "xxxxx.yyyyy.zzzzz"
 }
 ```
+
+<br/>
 
 - If you create a question with an uncreated user, it will also return an authentication token:
 #### Make a POST /questions:
 ```json
 {
-	"question": "Quando se deve usar 'var' no JavaScript?",
-	"student": "João Pedro",
-	"class": "T2",
-	"tags": "javascript, var"
+  "question": "Quando se deve usar 'var' no JavaScript?",
+  "student": "João Pedro",
+  "class": "T2",
+  "tags": "javascript, var"
 }
 ```
-#### It will return the question id and user authentication token:
+It will return the question id and user authentication token:
 ```json
 {
   "questionId": 2,
-	"userToken": "xxxxx.yyyyy.zzzzz"
+  "userToken": "xxxxx.yyyyy.zzzzz"
 }
 ```
+
+<br/>
 
 - To answer a question:
 #### Make a POST /questions:QUESTION_ID :
 ```json
 {
-	"answer": "É um mecanismo de controle de fluxo que visa beneficiar processos assíncronos." 
+  "answer": "É um mecanismo de controle de fluxo que visa beneficiar processos assíncronos." 
 }
 ```
-#### It will return status code 200 created. Make sure you're sending a header in the format:
+It will return status code 200 created. Make sure you're sending a header in the format:
 ```
-BEARER xxxxx.yyyyy.zzzzz
+  BEARER xxxxx.yyyyy.zzzzz
 ```
 
 - To up vote a question (increase one point), make a PUT /questions/QUESTION_ID/up-vote
