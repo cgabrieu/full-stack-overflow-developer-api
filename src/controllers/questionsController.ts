@@ -27,7 +27,7 @@ export async function createQuestion(req: Request, res: Response, next: NextFunc
 
 export async function getUnsolvedQuestions(req: Request, res: Response, next: NextFunction) {
   try {
-    const questions = await questionsService.get();
+    const questions = await questionsService.getUnsolved();
 
     return res.status(httpStatusCode.OK).send(questions);
   } catch (error) {

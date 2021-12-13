@@ -19,19 +19,8 @@ export async function create(questionBody: Question): Promise<number> {
   throw new Invalid('Invalid data, unable to create question');
 }
 
-export async function get(): Promise<any> {
-  const { question, student, tags, class: classname } = questionBody;
-
-  const existsUser = await usersRepository.findName(student);
-
-  let userId = existsUser?.id;
-  if (!userId) {
-    userId = await usersRepository.create(student, classname);
-  }
-
-  const questionId = await questionsRepository.create(userId, question, tags);
-  if (questionId) {
-    return questionId;
-  }
-  throw new Invalid('Invalid data, unable to create question');
+export async function getUnsolved(): Promise<Question[]> {
+  const questions = await questionsRepository.getUnsolved();
+  console.log(questions);
+  return questions;
 }
