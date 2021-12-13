@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://fsoverflow.herokuapp.com/questions/1">
-    <img src="https://user-images.githubusercontent.com/25062334/144647668-cf0d316d-afc8-48fe-b230-62f9d44d7dfe.png" width="300px">
+    <img src="https://user-images.githubusercontent.com/25062334/145907261-8d752d09-2cbd-49cd-b11e-7b1f23d439bd.png" width="300px">
   </a>
     <br />
     <a href="https://fsoverflow.herokuapp.com/questions/1">View the deploy</a>
