@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { createQuestionSchema } from '../schemas/questionsSchemas';
+import { createAnswerSchema, createQuestionSchema } from '../schemas/questionsSchemas';
 import Invalid from '../errors/Invalid';
 import httpStatusCode from '../enums/httpStatusCode';
 import * as questionsService from '../services/questionsService';
@@ -39,16 +39,20 @@ export async function getUnsolvedQuestions(req: Request, res: Response, next: Ne
 
 export async function postQuestionAnswer(req: RequestAuthentication, res: Response, next: NextFunction) {
   try {
+    const { error: invalidBody } = createAnswerSchema.validate(req.body);
+    if (invalidBody) {
+      throw new Invalid(invalidBody.message);
+    }
 
-    console.log(req.params.id)
-    console.log(req.userId);
+    const { answer } = req.body;
 
-    const questions = await questionsService.postAnswer();
+    await questionsService.postAnswer(answer);
 
     return res.status(httpStatusCode.CREATED).send({
       message: 'Successfully Answered.'
     });
   } catch (error) {
+    if (error instanceof Invalid) return res.status(httpStatusCode.BAD_REQUEST).send(error.message);
     console.error(error);
     return next();
   }

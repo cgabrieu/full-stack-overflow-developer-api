@@ -6,3 +6,7 @@ export const createQuestionSchema = joi.object({
     class: joi.string().pattern(/[T]{1}\d{1,}/).required(),
     tags: joi.string().min(3).required(),
 });
+
+export const createAnswerSchema = joi.object({
+    answer: joi.string().min(3).required(),
+});
