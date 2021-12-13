@@ -43,7 +43,6 @@ export async function getById(questionId: number): Promise<Question> {
 
     question.answers = answers;
   }
-  
   question.submitAt = formatDate(question.submitAt);
 
   return question;

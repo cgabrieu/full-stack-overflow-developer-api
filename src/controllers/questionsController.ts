@@ -85,3 +85,24 @@ export async function postQuestionAnswer(req: RequestAuthentication, res: Respon
     return next();
   }
 }
+
+export async function putVoteQuestion(req: Request, res: Response, next: NextFunction) {
+  try {
+    const questionId = Number(req.params.id);
+
+    if (!Number.isInteger(questionId) || questionId < 1) {
+      throw new Invalid('Invalid Question Id');
+    }
+
+    const type = req.url.includes('up-vote') ? 'up' : 'down';
+
+    await questionsService.vote(id, type);
+
+    return res.status(httpStatusCode.OK).send({
+      message: `Voted ${type} Successfully`,
+    });
+  } catch (error) {
+    if (error instanceof Invalid) return res.status(httpStatusCode.BAD_REQUEST).send(error.message);
+    return next(error);
+  }
+}

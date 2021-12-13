@@ -7,6 +7,8 @@ const router: Router = Router();
 router.post('/', questionsController.createQuestion);
 router.get('/', questionsController.getUnsolvedQuestions);
 router.post('/:id', authenticationMiddleware, questionsController.postQuestionAnswer);
-router.get('/:id', authenticationMiddleware, questionsController.getQuestionById);
+router.get('/:id', questionsController.getQuestionById);
+router.put('/:id/up-vote', questionsController.putVoteQuestion);
+router.put('/:id/down-vote', questionsController.putVoteQuestion);
 
 export default router;
