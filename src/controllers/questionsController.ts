@@ -18,8 +18,8 @@ export async function createQuestion(req: Request, res: Response, next: NextFunc
       throw new Invalid(invalidBody.message);
     }
 
-    const questionId = await questionsService.create(questionBody);
-    return res.status(httpStatusCode.CREATED).send({ id: questionId });
+    const result = await questionsService.create(questionBody);
+    return res.status(httpStatusCode.CREATED).send(result);
   } catch (error) {
     if (error instanceof Invalid) return res.status(httpStatusCode.BAD_REQUEST).send(error.message);
     if (error instanceof Conflict) return res.status(httpStatusCode.CONFLICT).send(error.message);

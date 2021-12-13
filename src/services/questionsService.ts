@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import { Question } from '../protocols/Question';
 import * as usersRepository from '../repositories/usersRepository';
 import * as questionsRepository from '../repositories/questionsRepository';
@@ -5,18 +6,23 @@ import { Answer } from '../protocols/Answer';
 import formatDate from '../utils/formatDate';
 import NotFound from '../errors/NotFound';
 
-export async function create(questionBody: Question): Promise<number> {
+export async function create(questionBody: Question): Promise<Object> {
   const { question, student, tags, class: classname } = questionBody;
 
   const existsUser = await usersRepository.findName(student);
 
   let userId = existsUser?.id;
+  let token;
   if (!userId) {
     userId = await usersRepository.create(student, classname);
+    token = jwt.sign({ userId }, process.env.JWT_SECRET);
   }
 
   const questionId = await questionsRepository.create(userId, question, tags);
-  return questionId;
+  return {
+    questionId,
+    userToken: token,
+  };
 }
 
 export async function getUnsolved(): Promise<Question[]> {
