@@ -35,7 +35,13 @@ export async function getById(questionId: number): Promise<Question> {
   const question = await questionsRepository.getById(questionId);
 
   if (question.answered) {
-    question.answers = await questionsRepository.getAnswersByQuestionId(questionId);
+    const answers = await questionsRepository.getAnswersByQuestionId(questionId);
+
+    answers.forEach((answer) => {
+      answer.answeredAt = formatDate(answer.answeredAt);
+    });
+
+    question.answers = answers;
   }
   
   question.submitAt = formatDate(question.submitAt);
