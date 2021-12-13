@@ -1,22 +1,23 @@
 import { Request, Response, NextFunction } from 'express';
 import { User } from '../protocols/User';
-import { createUserSchema } from '../schemas/usersSchemas';
+import { createQuestionSchema } from '../schemas/questionsSchemas';
 import Invalid from '../errors/Invalid';
 import httpStatusCode from '../enums/httpStatusCode';
+import * as questionsService from '../services/questionsService';
 import * as usersService from '../services/usersService';
 import Conflict from '../errors/Conflict';
+import { Question } from '../protocols/Question';
 
 export async function createQuestion(req: Request, res: Response, next: NextFunction): Promise<void | Response<any, Record<string, any>>> {
   try {
-    const createUserBody: User = req.body;
+    const questionBody: Question = req.body;
 
-    const { error: invalidBody } = createUserSchema.validate(createUserBody);
+    const { error: invalidBody } = createQuestionSchema.validate(questionBody);
     if (invalidBody) {
       throw new Invalid(invalidBody.message);
     }
 
-    const questionId = await usersService.create(createUserBody);
-
+    const questionId = await questionsService.create(questionBody);
     return res.status(httpStatusCode.CREATED).send({ id: questionId });
   } catch (error) {
     console.error(error);

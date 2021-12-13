@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import Conflict from '../errors/Conflict';
-import NotFound from '../errors/NotFound';
 import * as usersRepository from '../repositories/usersRepository';
 import { User } from '../protocols/User';
 import Invalid from '../errors/Invalid';
@@ -19,4 +18,3 @@ export async function create(createUserBody: User): Promise<string> {
 
   throw new Invalid('Invalid data, unable to create user');
 }
-
