@@ -1,6 +1,7 @@
 import '../setup';
 import connection from '../connection/database';
 import { Question } from '../protocols/Question';
+import { Answer } from '../protocols/Answer';
 
 export async function create(userId: number, question: string, tags: string): Promise<number> {
   const result = await connection.query(
@@ -21,4 +22,13 @@ export async function getUnsolved(): Promise<Question[]> {
   );
 
   return result.rows;
+}
+
+export async function createAnswer({ userId, questionId, answer }: Answer): Promise<number> {
+  const result = await connection.query(
+    'INSERT INTO answers (user_id, question_id, answer) VALUES ($1, $2, $3) RETURNING id;',
+    [userId, questionId, answer],
+  );
+
+  return result.rows[0].id;
 }

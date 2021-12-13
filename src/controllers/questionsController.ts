@@ -51,7 +51,7 @@ export async function postQuestionAnswer(req: RequestAuthentication, res: Respon
       answer: req.body.answer,
     };
 
-    await questionsService.postAnswer(answer);
+    await questionsService.createAnswer(answer);
 
     return res.status(httpStatusCode.CREATED).send({
       message: 'Successfully Answered.'

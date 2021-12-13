@@ -25,6 +25,7 @@ CREATE TABLE "users" (
 CREATE TABLE "answers" (
 	"id" serial NOT NULL,
 	"user_id" integer NOT NULL,
+	"question_id" integer NOT NULL,
 	"answer" varchar(255) NOT NULL,
 	"answeredAt" TIMESTAMP NOT NULL DEFAULT now(),
 	CONSTRAINT "answers_pk" PRIMARY KEY ("id")
@@ -34,3 +35,4 @@ CREATE TABLE "answers" (
 
 ALTER TABLE "questions" ADD CONSTRAINT "questions_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 ALTER TABLE "answers" ADD CONSTRAINT "answers_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
+ALTER TABLE "answers" ADD CONSTRAINT "answers_fk0" FOREIGN KEY ("question_id") REFERENCES "questions"("id");
