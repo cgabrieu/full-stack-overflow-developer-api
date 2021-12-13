@@ -6,6 +6,7 @@ import * as questionsService from '../services/questionsService';
 import Conflict from '../errors/Conflict';
 import { Question } from '../protocols/Question';
 import RequestAuthentication from '../protocols/RequestAuthentication';
+import { Answer } from '../protocols/Answer';
 
 export async function createQuestion(req: Request, res: Response, next: NextFunction): Promise<void | Response<any, Record<string, any>>> {
   try {
@@ -44,7 +45,11 @@ export async function postQuestionAnswer(req: RequestAuthentication, res: Respon
       throw new Invalid(invalidBody.message);
     }
 
-    const { answer } = req.body;
+    const answer: Answer = {
+      userId: req.userId,
+      questionId: Number(req.params.id),
+      answer: req.body.answer,
+    };
 
     await questionsService.postAnswer(answer);
 

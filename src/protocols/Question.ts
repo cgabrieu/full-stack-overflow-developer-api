@@ -1,6 +1,6 @@
 export interface Question {
     id?: number,
-    user_id?: number,
+    userId?: number,
     question: string,
     student: string,
     class: string,
