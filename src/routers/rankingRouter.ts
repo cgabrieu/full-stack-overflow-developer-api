@@ -3,4 +3,4 @@ import * as usersController from '../controllers/usersController';
 
 const router: Router = Router();
 
-export default router.post('/', usersController.getUserRanking);
+export default router.get('/', usersController.getUserRanking);

@@ -28,16 +28,8 @@ export async function createUser(req: Request, res: Response, next: NextFunction
 
 export async function getUserRanking(req: Request, res: Response, next: NextFunction): Promise<void | Response<any, Record<string, any>>> {
   try {
-    const createUserBody: User = req.body;
-
-    const { error: invalidBody } = createUserSchema.validate(createUserBody);
-    if (invalidBody) {
-      throw new Invalid(invalidBody.message);
-    }
-
-    const token = await usersService.create(createUserBody);
-
-    return res.status(httpStatusCode.CREATED).send({ token });
+    const ranking = await usersService.getRanking();
+    return res.status(httpStatusCode.OK).send(ranking);
   } catch (error) {
     console.error(error);
     if (error instanceof Invalid) return res.status(httpStatusCode.BAD_REQUEST).send(error.message);

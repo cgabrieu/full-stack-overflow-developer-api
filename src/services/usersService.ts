@@ -18,3 +18,8 @@ export async function create(createUserBody: User): Promise<string> {
 
   throw new Invalid('Invalid data, unable to create user');
 }
+
+export async function getRanking() {
+  const ranking = await usersRepository.getRanking();
+  return ranking;
+}

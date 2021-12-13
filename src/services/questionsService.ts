@@ -60,7 +60,7 @@ export async function createAnswer(answer: Answer): Promise<number> {
   return answerId;
 }
 
-export async function vote(questionId: number, voteType: string) {
+export async function vote(questionId: number, voteType: string): Promise<Question> {
   const question = await questionsRepository.getById(questionId);
   if (!question) {
     throw new NotFound('Question Not Found');
