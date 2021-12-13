@@ -5,6 +5,7 @@ import httpStatusCode from '../enums/httpStatusCode';
 import * as questionsService from '../services/questionsService';
 import Conflict from '../errors/Conflict';
 import { Question } from '../protocols/Question';
+import RequestAuthentication from '../protocols/RequestAuthentication';
 
 export async function createQuestion(req: Request, res: Response, next: NextFunction): Promise<void | Response<any, Record<string, any>>> {
   try {
@@ -32,8 +33,23 @@ export async function getUnsolvedQuestions(req: Request, res: Response, next: Ne
     return res.status(httpStatusCode.OK).send(questions);
   } catch (error) {
     console.error(error);
-    if (error instanceof Invalid) return res.status(httpStatusCode.BAD_REQUEST).send(error.message);
-    if (error instanceof Conflict) return res.status(httpStatusCode.CONFLICT).send(error.message);
+    return next();
+  }
+}
+
+export async function postQuestionAnswer(req: RequestAuthentication, res: Response, next: NextFunction) {
+  try {
+
+    console.log(req.params.id)
+    console.log(req.userId);
+
+    const questions = await questionsService.postAnswer();
+
+    return res.status(httpStatusCode.CREATED).send({
+      message: 'Successfully Answered.'
+    });
+  } catch (error) {
+    console.error(error);
     return next();
   }
 }
