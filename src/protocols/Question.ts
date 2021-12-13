@@ -1,11 +1,11 @@
 export interface Question {
     id?: number,
-    userId?: number,
+    user_id?: number,
     question: string,
     student: string,
     class: string,
     points?: number,
     tags: string,
     answered?: boolean,
-    submitAt: string,
+    submit_at?: string,
 }
