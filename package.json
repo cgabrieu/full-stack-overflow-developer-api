@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "An api to track Full Stack Overflow Developer Q&A",
   "main": "index.js",
-  "engines": { "node": "14.16.3" },
+  "engines": { "node": "14.17.5" },
   "scripts": {
     "start": "node dist/server.js",
     "postinstall": "tsc",
