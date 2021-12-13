@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "start": "node dist/server.js",
-    "postinstall": "tsc",
+    "postinstall": "npx tsc",
     "start:test": "nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\"",
     "start:dev": "NODE_ENV=dev npx nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\""
   },
