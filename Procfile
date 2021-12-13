@@ -1,1 +1,0 @@
-web: node --es-module-specifier-resolution=node dist/server.js

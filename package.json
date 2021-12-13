@@ -4,13 +4,13 @@
   "description": "An api to track Full Stack Overflow Developer Q&A",
   "main": "dist/server.js",
   "engines": { "node": "14.17.5" },
-  "type": "module",
   "scripts": {
-    "start": "node --es-module-specifier-resolution=node dist/server.js",
-    "postinstall": "npx tsc",
+    "start": "node dist/server.js",
+    "build": "tsc",
     "start:test": "nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\"",
     "start:dev": "NODE_ENV=dev npx nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\""
   },
+  "postinstall": "npm run build",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cgabrieu/full-stack-overflow-developer-api.git"
