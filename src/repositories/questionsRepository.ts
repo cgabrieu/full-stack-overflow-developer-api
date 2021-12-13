@@ -32,7 +32,7 @@ export async function getById(questionId: number): Promise<Question> {
       FROM questions
       JOIN users
         ON questions.user_id = users.id
-      WHERE question_id = $1;`,
+      WHERE questions.id = $1;`,
       [questionId]
   );
 

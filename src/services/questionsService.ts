@@ -1,9 +1,9 @@
-import dayjs from 'dayjs'
 import { Question } from '../protocols/Question';
 import * as usersRepository from '../repositories/usersRepository';
 import * as questionsRepository from '../repositories/questionsRepository';
 import Invalid from '../errors/Invalid';
 import { Answer } from '../protocols/Answer';
+import formatDate from '../utils/formatDate';
 
 export async function create(questionBody: Question): Promise<number> {
   const { question, student, tags, class: classname } = questionBody;
@@ -25,7 +25,7 @@ export async function getUnsolved(): Promise<Question[]> {
   const questions = await questionsRepository.getUnsolved();
 
   questions.forEach((question) => {
-    question.submitAt = `${dayjs(question.submitAt).format('YYYY-MM-DD HH:mm')}`;
+    question.submitAt = formatDate(question.submitAt);
   });
 
   return questions;
@@ -38,6 +38,8 @@ export async function getById(questionId: number): Promise<Question> {
     question.answers = await questionsRepository.getAnswersByQuestionId(questionId);
   }
   
+  question.submitAt = formatDate(question.submitAt);
+
   return question;
 }
 

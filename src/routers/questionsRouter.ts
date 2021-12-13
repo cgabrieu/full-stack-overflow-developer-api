@@ -7,5 +7,6 @@ const router: Router = Router();
 router.post('/', questionsController.createQuestion);
 router.get('/', questionsController.getUnsolvedQuestions);
 router.post('/:id', authenticationMiddleware, questionsController.postQuestionAnswer);
+router.get('/:id', authenticationMiddleware, questionsController.getQuestionById);
 
 export default router;
