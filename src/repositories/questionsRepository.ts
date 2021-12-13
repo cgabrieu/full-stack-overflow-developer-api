@@ -66,3 +66,10 @@ export async function createAnswer({ userId, questionId, answer }: Answer): Prom
   return result.rows[0].id;
 }
 
+export async function vote(questionId: number, voteType: string) {
+  const result = await connection.query(
+    `UPDATE questions SET points = points ${voteType} 1 WHERE id = $1 RETURNING *;`,
+    [questionId],
+  );
+  return result.rows[0];
+}

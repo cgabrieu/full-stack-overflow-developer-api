@@ -17,9 +17,7 @@ export async function create(questionBody: Question): Promise<number> {
   }
 
   const questionId = await questionsRepository.create(userId, question, tags);
-  if (questionId) return questionId;
-
-  throw new Invalid('Invalid data, unable to create question');
+  return questionId;
 }
 
 export async function getUnsolved(): Promise<Question[]> {
@@ -36,7 +34,7 @@ export async function getById(questionId: number): Promise<Question> {
   const question = await questionsRepository.getById(questionId);
 
   if (!question) {
-    throw new NotFound('This question doesnt exist')
+    throw new NotFound('Question Not Found');
   }
 
   if (question.answered) {
@@ -56,18 +54,19 @@ export async function getById(questionId: number): Promise<Question> {
 export async function createAnswer(answer: Answer): Promise<number> {
   const question = await questionsRepository.getById(answer.questionId);
   if (!question) {
-    throw new NotFound('This question doesnt exist')
+    throw new NotFound('Question Not Found');
   }
 
   const answerId = await questionsRepository.createAnswer(answer);
   return answerId;
 }
 
-export async function vote(questionId: number, isDownVote: boolean) {
+export async function vote(questionId: number, voteType: string) {
   const question = await questionsRepository.getById(questionId);
   if (!question) {
-    throw new NotFound('This question doesnt exist')
+    throw new NotFound('Question Not Found');
   }
-
   
+  const votedQuestion = await questionsRepository.vote(questionId, voteType);  
+  return votedQuestion;
 }

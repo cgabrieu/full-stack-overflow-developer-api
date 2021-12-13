@@ -98,12 +98,11 @@ export async function putVoteQuestion(req: Request, res: Response, next: NextFun
       throw new Invalid('Invalid Question Id');
     }
 
-    const isDownVote = req.url.includes('down-vote');
-
-    await questionsService.vote(questionId, isDownVote);
+    const voteType = req.url.includes('up-vote') ? '+' : '-';
+    await questionsService.vote(questionId, voteType);
 
     return res.status(httpStatusCode.OK).send({
-      message: `Voted Successfully`,
+      message: `Voted ${voteType}1 Successfully`,
     });
   } catch (error) {
     if (error instanceof Invalid) return res.status(httpStatusCode.BAD_REQUEST).send(error.message);
