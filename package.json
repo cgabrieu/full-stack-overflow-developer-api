@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "engines": { "node": "14.17.5" },
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "NODE_ENV=prod node dist/server.js",
     "build": "tsc",
     "start:test": "nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\"",
     "start:dev": "NODE_ENV=dev npx nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/server.ts\""
