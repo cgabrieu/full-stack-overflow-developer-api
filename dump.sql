@@ -6,7 +6,7 @@ CREATE TABLE "questions" (
 	"question" varchar(7000) NOT NULL,
 	"points" integer NOT NULL DEFAULT '1',
 	"tags" varchar(255) NOT NULL,
-	"submit_at" TIMESTAMP NOT NULL DEFAULT 'now()',
+	"submit_at" TIMESTAMP NOT NULL DEFAULT now(),
 	CONSTRAINT "questions_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -25,7 +25,7 @@ CREATE TABLE "answers" (
 	"id" serial NOT NULL,
 	"user_id" integer NOT NULL,
 	"answer" varchar(255) NOT NULL,
-	"answeredAt" TIMESTAMP NOT NULL DEFAULT 'now()',
+	"answeredAt" TIMESTAMP NOT NULL DEFAULT now(),
 	CONSTRAINT "answers_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
