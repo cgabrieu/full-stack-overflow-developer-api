@@ -1,7 +1,6 @@
 import { Question } from '../protocols/Question';
 import * as usersRepository from '../repositories/usersRepository';
 import * as questionsRepository from '../repositories/questionsRepository';
-import Invalid from '../errors/Invalid';
 import { Answer } from '../protocols/Answer';
 import formatDate from '../utils/formatDate';
 import NotFound from '../errors/NotFound';
