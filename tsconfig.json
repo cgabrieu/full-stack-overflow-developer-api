@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
+        "moduleResolution": "node",
         "outDir": "./dist",
-        "module": "commonjs",
-        "target": "ES2019",
         "esModuleInterop": true,
-        "allowJs": true
-    } 
+        "noImplicitAny": true,
+        "target": "ES6"
+    }
 }
