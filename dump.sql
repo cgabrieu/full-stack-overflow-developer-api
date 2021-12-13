@@ -6,6 +6,7 @@ CREATE TABLE "questions" (
 	"question" varchar(7000) NOT NULL,
 	"points" integer NOT NULL DEFAULT '1',
 	"tags" varchar(255) NOT NULL,
+	"answered" boolean NOT NULL DEFAULT false,
 	"submit_at" TIMESTAMP NOT NULL DEFAULT now(),
 	CONSTRAINT "questions_pk" PRIMARY KEY ("id")
 ) WITH (
