@@ -35,4 +35,4 @@ CREATE TABLE "answers" (
 
 ALTER TABLE "questions" ADD CONSTRAINT "questions_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 ALTER TABLE "answers" ADD CONSTRAINT "answers_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
-ALTER TABLE "answers" ADD CONSTRAINT "answers_fk0" FOREIGN KEY ("question_id") REFERENCES "questions"("id");
+ALTER TABLE "answers" ADD CONSTRAINT "answers_fk1" FOREIGN KEY ("question_id") REFERENCES "questions"("id");
