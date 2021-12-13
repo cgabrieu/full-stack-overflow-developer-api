@@ -1,3 +1,5 @@
+import { Answer } from "./Answer";
+
 export interface Question {
     id?: number,
     userId?: number,
@@ -8,4 +10,5 @@ export interface Question {
     tags: string,
     answered?: boolean,
     submitAt?: string,
+    answers?: Answer[],
 }

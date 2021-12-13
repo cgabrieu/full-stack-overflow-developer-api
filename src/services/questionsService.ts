@@ -31,6 +31,16 @@ export async function getUnsolved(): Promise<Question[]> {
   return questions;
 }
 
+export async function getById(questionId: number): Promise<Question> {
+  const question = await questionsRepository.getById(questionId);
+
+  if (question.answered) {
+    question.answers = await questionsRepository.getAnswersByQuestionId(questionId);
+  }
+  
+  return question;
+}
+
 export async function createAnswer(answer: Answer): Promise<number> {
   const answerId = await questionsRepository.createAnswer(answer);
   return answerId;

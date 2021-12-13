@@ -24,6 +24,34 @@ export async function getUnsolved(): Promise<Question[]> {
   return result.rows;
 }
 
+export async function getById(questionId: number): Promise<Question> {
+  const result = await connection.query(
+    `SELECT
+        questions.question, users.name AS student, users.class,
+        questions.tags, questions.answered, questions.submit_at AS "submitAt"
+      FROM questions
+      JOIN users
+        ON questions.user_id = users.id
+      WHERE question_id = $1;`,
+      [questionId]
+  );
+
+  return result.rows[0];
+}
+
+export async function getAnswersByQuestionId(questionId: number): Promise<Answer[]> {
+  const result = await connection.query(
+    `SELECT users.name AS student, users.class, answer, answers."answeredAt"
+      FROM answers
+      JOIN users
+        ON answers.user_id = users.id
+      WHERE question_id = $1;`,
+      [questionId]
+  );
+
+  return result.rows;
+}
+
 export async function createAnswer({ userId, questionId, answer }: Answer): Promise<number> {
   const result = await connection.query(
     'INSERT INTO answers (user_id, question_id, answer) VALUES ($1, $2, $3) RETURNING id;',
