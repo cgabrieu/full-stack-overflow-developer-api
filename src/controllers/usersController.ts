@@ -19,7 +19,6 @@ export async function createUser(req: Request, res: Response, next: NextFunction
 
     return res.status(httpStatusCode.CREATED).send({ token });
   } catch (error) {
-    console.error(error);
     if (error instanceof Invalid) return res.status(httpStatusCode.BAD_REQUEST).send(error.message);
     if (error instanceof Conflict) return res.status(httpStatusCode.CONFLICT).send(error.message);
     return next();
@@ -31,7 +30,6 @@ export async function getUserRanking(req: Request, res: Response, next: NextFunc
     const ranking = await usersService.getRanking();
     return res.status(httpStatusCode.OK).send(ranking);
   } catch (error) {
-    console.error(error);
     if (error instanceof Invalid) return res.status(httpStatusCode.BAD_REQUEST).send(error.message);
     if (error instanceof Conflict) return res.status(httpStatusCode.CONFLICT).send(error.message);
     return next();

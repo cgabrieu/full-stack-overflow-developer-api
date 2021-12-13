@@ -21,7 +21,6 @@ export async function createQuestion(req: Request, res: Response, next: NextFunc
     const questionId = await questionsService.create(questionBody);
     return res.status(httpStatusCode.CREATED).send({ id: questionId });
   } catch (error) {
-    console.error(error);
     if (error instanceof Invalid) return res.status(httpStatusCode.BAD_REQUEST).send(error.message);
     if (error instanceof Conflict) return res.status(httpStatusCode.CONFLICT).send(error.message);
     return next();
@@ -34,7 +33,6 @@ export async function getUnsolvedQuestions(req: Request, res: Response, next: Ne
 
     return res.status(httpStatusCode.OK).send(questions);
   } catch (error) {
-    console.error(error);
     return next();
   }
 }
@@ -51,7 +49,6 @@ export async function getQuestionById(req: Request, res: Response, next: NextFun
 
     return res.status(httpStatusCode.OK).send(question);
   } catch (error) {
-    console.error(error);
     if (error instanceof Invalid) return res.status(httpStatusCode.BAD_REQUEST).send(error.message);
     if (error instanceof NotFound) return res.status(httpStatusCode.NOT_FOUND).send(error.message);
     return next();
@@ -85,7 +82,6 @@ export async function postQuestionAnswer(req: RequestAuthentication, res: Respon
   } catch (error) {
     if (error instanceof Invalid) return res.status(httpStatusCode.BAD_REQUEST).send(error.message);
     if (error instanceof NotFound) return res.status(httpStatusCode.NOT_FOUND).send(error.message);
-    console.error(error);
     return next();
   }
 }
