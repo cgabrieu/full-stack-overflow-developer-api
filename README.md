@@ -29,7 +29,68 @@ Tools that were used in the project:
   <img src='https://img.shields.io/badge/npm-000000?style=for-the-badge&logo=npm'>
   <img src='https://img.shields.io/badge/Heroku-000000?style=for-the-badge&logo=heroku&logoColor=410093'>
 </p>
-  
+
+<br/>
+
+## How It Works
+
+See sample requests and responses
+
+- See all unanswered questions [here](https://fsoverflow.herokuapp.com/questions) (GET /questions)
+
+- See the answers to a specific question [here](https://fsoverflow.herokuapp.com/questions/1) (GET /questions/QUESTION_ID), when not answered [here](https://fsoverflow.herokuapp.com/questions/3)
+
+- See the ranking by points [here](https://fsoverflow.herokuapp.com/ranking)
+
+- To answer a question you need to create a user to get your authorization token:
+#### Make a POST /users:
+```json
+{
+	"name": "Marcio",
+	"class": "T3" 
+}
+```
+#### It will return a json web token:
+```json
+{
+	"token": "xxxxx.yyyyy.zzzzz"
+}
+```
+
+- If you create a question with an uncreated user, it will also return an authentication token:
+#### Make a POST /questions:
+```json
+{
+	"question": "Quando se deve usar 'var' no JavaScript?",
+	"student": "João Pedro",
+	"class": "T2",
+	"tags": "javascript, var"
+}
+```
+#### It will return the question id and user authentication token:
+```json
+{
+  "questionId": 2,
+	"userToken": "xxxxx.yyyyy.zzzzz"
+}
+```
+
+- To answer a question:
+#### Make a POST /questions:QUESTION_ID :
+```json
+{
+	"answer": "É um mecanismo de controle de fluxo que visa beneficiar processos assíncronos." 
+}
+```
+#### It will return status code 200 created. Make sure you're sending a header in the format:
+```
+BEARER xxxxx.yyyyy.zzzzz
+```
+
+- To up vote a question (increase one point), make a PUT /questions/QUESTION_ID/up-vote
+
+- To down vote a question (decrease one point), make a PUT /questions/QUESTION_ID/down-vote
+
 <br/>
 
 ## Getting Started
@@ -72,7 +133,15 @@ CREATE DATABASE fullstackoverflow;
 ```sh
 npm run start:dev
 ```
-  
+
+## How to contribute
+
+1. Fork the project.
+2. Create a new branch with your changes: `git checkout -b feat/myFeatureName`
+3. For each feature implemented, make a commit specifying what was done
+4. Submit your changes: `git push -u origin feat/myFeatureName`
+
+
 <br/>
 
 ## Developer
