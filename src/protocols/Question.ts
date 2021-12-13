@@ -7,5 +7,5 @@ export interface Question {
     points?: number,
     tags: string,
     answered?: boolean,
-    submit_at?: string,
+    submitAt?: string,
 }

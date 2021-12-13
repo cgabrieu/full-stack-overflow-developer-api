@@ -22,9 +22,9 @@ export async function create(questionBody: Question): Promise<number> {
 
 export async function getUnsolved(): Promise<Question[]> {
   const questions = await questionsRepository.getUnsolved();
-
+  console.log(questions);
   questions.forEach((question) => {
-    question.submit_at = `${dayjs(question.submit_at).format('YYYY-MM-DD HH:mm')}`;
+    question.submitAt = `${dayjs(question.submitAt).format('YYYY-MM-DD HH:mm')}`;
   });
 
   return questions;

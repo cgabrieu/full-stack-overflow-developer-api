@@ -13,7 +13,11 @@ export async function create(userId: number, question: string, tags: string): Pr
 
 export async function getUnsolved(): Promise<Question[]> {
   const result = await connection.query(
-    'SELECT * FROM questions WHERE answered = false;',
+    `SELECT questions.id, questions.question, users.name AS student, users.class, questions.submit_at AS "submitAt"
+      FROM questions
+      JOIN users
+        ON questions.user_id = users.id
+      WHERE answered = false;`,
   );
 
   return result.rows;
