@@ -4,6 +4,7 @@ import * as questionsRepository from '../repositories/questionsRepository';
 import Invalid from '../errors/Invalid';
 import { Answer } from '../protocols/Answer';
 import formatDate from '../utils/formatDate';
+import NotFound from '../errors/NotFound';
 
 export async function create(questionBody: Question): Promise<number> {
   const { question, student, tags, class: classname } = questionBody;
@@ -34,6 +35,10 @@ export async function getUnsolved(): Promise<Question[]> {
 export async function getById(questionId: number): Promise<Question> {
   const question = await questionsRepository.getById(questionId);
 
+  if (!question) {
+    throw new NotFound('This question doesnt exist')
+  }
+
   if (question.answered) {
     const answers = await questionsRepository.getAnswersByQuestionId(questionId);
 
@@ -49,6 +54,20 @@ export async function getById(questionId: number): Promise<Question> {
 }
 
 export async function createAnswer(answer: Answer): Promise<number> {
+  const question = await questionsRepository.getById(answer.questionId);
+  if (!question) {
+    throw new NotFound('This question doesnt exist')
+  }
+
   const answerId = await questionsRepository.createAnswer(answer);
   return answerId;
+}
+
+export async function vote(questionId: number, isDownVote: boolean) {
+  const question = await questionsRepository.getById(questionId);
+  if (!question) {
+    throw new NotFound('This question doesnt exist')
+  }
+
+  
 }
