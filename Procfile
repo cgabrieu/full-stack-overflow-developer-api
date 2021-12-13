@@ -1,1 +1,1 @@
-web: node --experimental-modules --es-module-specifier-resolution=node dist/server.js
+web: node --es-module-specifier-resolution=node dist/server.js
