@@ -38,8 +38,31 @@ export async function getUnsolvedQuestions(req: Request, res: Response, next: Ne
   }
 }
 
+export async function getQuestionById(req: Request, res: Response, next: NextFunction) {
+  try {
+    const questionId = Number(req.params.id);
+
+    if (!Number.isInteger(questionId) || questionId < 1) {
+      throw new Invalid('Invalid Question Id');
+    }
+
+    const question = await questionsService.getById(questionId);
+
+    return res.status(httpStatusCode.OK).send(question);
+  } catch (error) {
+    console.error(error);
+    return next();
+  }
+}
+
 export async function postQuestionAnswer(req: RequestAuthentication, res: Response, next: NextFunction) {
   try {
+    const questionId = Number(req.params.id);
+
+    if (!Number.isInteger(questionId) || questionId < 1) {
+      throw new Invalid('Invalid Question Id');
+    }
+
     const { error: invalidBody } = createAnswerSchema.validate(req.body);
     if (invalidBody) {
       throw new Invalid(invalidBody.message);
@@ -47,14 +70,14 @@ export async function postQuestionAnswer(req: RequestAuthentication, res: Respon
 
     const answer: Answer = {
       userId: req.userId,
-      questionId: Number(req.params.id),
+      questionId,
       answer: req.body.answer,
     };
 
-    await questionsService.createAnswer(answer);
+    const answerId = await questionsService.createAnswer(answer);
 
     return res.status(httpStatusCode.CREATED).send({
-      message: 'Successfully Answered.'
+      message: `Successfully Answered - Answer Id: ${answerId}.`,
     });
   } catch (error) {
     if (error instanceof Invalid) return res.status(httpStatusCode.BAD_REQUEST).send(error.message);

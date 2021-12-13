@@ -31,7 +31,7 @@ export async function getUnsolved(): Promise<Question[]> {
   return questions;
 }
 
-export async function createAnswer(answer: Answer) {
+export async function createAnswer(answer: Answer): Promise<number> {
   const answerId = await questionsRepository.createAnswer(answer);
-  console.log(answerId);
+  return answerId;
 }

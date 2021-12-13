@@ -37,3 +37,4 @@ export async function createAnswer({ userId, questionId, answer }: Answer): Prom
 
   return result.rows[0].id;
 }
+
