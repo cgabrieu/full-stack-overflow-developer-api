@@ -30,5 +30,10 @@ export async function createAnswer({ userId, questionId, answer }: Answer): Prom
     [userId, questionId, answer],
   );
 
+  await connection.query(
+    'UPDATE questions SET answered = true WHERE id = $1;',
+    [questionId],
+  );
+
   return result.rows[0].id;
 }
