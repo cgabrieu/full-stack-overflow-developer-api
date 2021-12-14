@@ -30,6 +30,8 @@ Tools that were used in the project:
   <img src='https://img.shields.io/badge/Heroku-000000?style=for-the-badge&logo=heroku&logoColor=410093'>
 </p>
 
+> For more see the [package.json](https://github.com/cgabrieu/full-stack-overflow-developer-api/blob/main/package.json)
+
 <br/>
 
 ## How It Works
