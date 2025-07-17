@@ -5,7 +5,7 @@
     <img src="https://user-images.githubusercontent.com/25062334/145907261-8d752d09-2cbd-49cd-b11e-7b1f23d439bd.png" width="300px">
   </a>
     <br />
-    <a href="https://fsoverflow.herokuapp.com/questions/1">View the deploy</a>
+    <a href="https://fsoverflow.herokuapp.com/questions/1">View the deployed app/a>
     <br />
 </div>
   
@@ -13,7 +13,7 @@
 
 ## About
 
-In this API people can post and answer questions. You can register, view the answered and unanswered questions, send an answer and access a ranking with the users who have the most answer points.
+This API allows users to post and answer questions. You can register, browse both answered and unanswered questions, submit answers, and check a leaderboard ranking users by their answer points.
     
 <br/>
 
